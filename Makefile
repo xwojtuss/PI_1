@@ -7,20 +7,21 @@ NAME = automaton
 INCLUDES = -Iincludes
 
 SRCS_FOLDER = sources/
-SRCS_FILES = main.c
+SRCS_FILES = main.c read_from_stdin.c draw.c
 
-SRCS = ${addsuffix ${SRCS_FOLDER}, ${SRCS_FILES}}
+SRCS = ${addprefix ${SRCS_FOLDER}, ${SRCS_FILES}}
 
 OBJECTS_FOLDER = objects/
-OBJECTS_FILES = ${SRCS:.c=.o}
+OBJECTS_FILES = ${SRCS_FILES:.c=.o}
 
-OBJECTS = ${addsuffix ${OBJECTS_FOLDER}, ${OBJECTS_FILES}}
+OBJECTS = ${addprefix ${OBJECTS_FOLDER}, ${OBJECTS_FILES}}
 
 all: ${NAME}
 
 ${NAME}: ${OBJECTS}
+	${COMPILER} ${CFLAGS} ${OBJECTS} -o $@ ${INCLUDES}
 
-%.o: %.c
+${OBJECTS_FOLDER}%.o: ${SRCS_FOLDER}%.c
 	${COMPILER} ${CFLAGS} -c $< -o $@ ${INCLUDES}
 
 clean:

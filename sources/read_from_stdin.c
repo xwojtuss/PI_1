@@ -43,6 +43,8 @@ char	prompt_for_symbol(void)
 		result = get_letter();
 		if (is_rest_eof_newline() && strchr(ALPHABET_AUTOMATON, result))
 			return (result);
+		system(CLEAR_WINDOW);
+		draw_automaton(-42);
 	}
 	return (result);
 }

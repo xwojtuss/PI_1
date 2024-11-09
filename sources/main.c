@@ -29,14 +29,15 @@ int	main(int argc, char **argv)
 	}
 	else if (argc == 1)
 	{
-		draw_automaton(-42);
+		symbol = -42 + '0';
 		while (true)
 		{
-			symbol = prompt_for_symbol();
+			system(CLEAR_WINDOW);
 			accepted = draw_automaton(symbol - '0');
-			if (accepted)
+			if (accepted && symbol != -42 + '0')
 				break ;
 			printf("NOT ACCEPTED MESSAGE\n");//placeholder
+			symbol = prompt_for_symbol();
 		}
 	}
 	else
@@ -61,7 +62,6 @@ int	main(int argc, char **argv)
 			printf("NOT ACCEPTED MESSAGE\n");//placeholder
 			return (EXIT_SUCCESS);
 		}
-			
 	}
 	printf("ACCEPTED MESSAGE\n");//placeholder
 	return (EXIT_SUCCESS);

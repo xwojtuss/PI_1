@@ -27,18 +27,18 @@ char	prompt_for_symbol(void)
 	char	result;
 	short	accepted;
 
-	printf("Proszę podać następny (tylko jeden) symbol zawarty w alfabecie S{0; 1} (EOF sprawdza łańcuch): ");
+	printf("Please add next (only one) symbol that is part of alphabet S{0; 1} (EOF checks string): ");
 	result = getchar();
 	accepted = is_rest_eof_newline();
 	if (accepted == 0)
 	{
-		printf("Podano więcej niż jeden symbol.\n");
+		printf("Inputed more than one symbol.\n");
 		exit(EXIT_FAILURE);
 	}
 	else if (accepted == -42 || result == EOF)
 		return (printf("\n"), -42);
 	if (strchr(ALPHABET_AUTOMATON, result))
 		return (result);
-	printf("Symbol nie jest zawarty w alfabecie sigma.\n");
+	printf("Symbol is not a part of alpabet sigma.\n");
 	exit(EXIT_FAILURE);
 }

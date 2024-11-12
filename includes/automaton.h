@@ -12,7 +12,7 @@
 # define INVALID_ARGUMENT -42
 
 # define TEXT_ATTRIB_SIZE 10
-# define SELECTED "\e[1;5;33m"
+# define SELECTED "\e[1;33m"
 # define NOT_SELECTED "\e[m"
 # define CLEAR_WINDOW "clear"
 

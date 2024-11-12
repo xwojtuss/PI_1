@@ -1,34 +1,23 @@
 #include "automaton.h"
 
-char	get_letter(void)
-{
-	char	letter;
-
-	letter = getchar();
-	if (letter == EOF)
-	{
-		printf("\nWychodzenie...\n");
-		exit(EXIT_SUCCESS);
-	}
-	return (letter);
-}
-
 /*
 Flushes the input buffer, while looking
 if the rest of the characters are only newlines or EOF
 */
-bool	is_rest_eof_newline(void)
+short	is_rest_eof_newline(void)
 {
 	char	temp;
-	bool	result;
+	short	result;
 
-	result = true;
+	result = 1;
 	temp = 42;
 	while (temp != '\n')
 	{
-		temp = get_letter();
+		temp = getchar();
+		if (temp == EOF)
+			return (-42);
 		if (temp != '\n')
-			result = false;
+			result = 0;
 	}
     return (result);
 }
@@ -36,15 +25,20 @@ bool	is_rest_eof_newline(void)
 char	prompt_for_symbol(void)
 {
 	char	result;
+	short	accepted;
 
-	while (true)
+	printf("Proszę podać następny (tylko jeden) symbol zawarty w alfabecie S{0; 1} (EOF sprawdza łańcuch): ");
+	result = getchar();
+	accepted = is_rest_eof_newline();
+	if (accepted == 0)
 	{
-		printf("Proszę podać następny (tylko jeden) symbol zawarty w alfabecie S{0; 1} > ");
-		result = get_letter();
-		if (is_rest_eof_newline() && strchr(ALPHABET_AUTOMATON, result))
-			return (result);
-		system(CLEAR_WINDOW);
-		draw_automaton(-42);
+		printf("Podano więcej niż jeden symbol.\n");
+		exit(EXIT_FAILURE);
 	}
-	return (result);
+	else if (accepted == -42 || result == EOF)
+		return (printf("\n"), -42);
+	if (strchr(ALPHABET_AUTOMATON, result))
+		return (result);
+	printf("Symbol nie jest zawarty w alfabecie sigma.\n");
+	exit(EXIT_FAILURE);
 }

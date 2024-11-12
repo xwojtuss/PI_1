@@ -1,8 +1,12 @@
+# zmienna odpowiedzialna za czas animacji w ms, po zmianie należy wykonać make re
+CZAS_ANIMACJI_MS = 1000
+
+# w przypadku braku clang można zmienić na gcc, cc, itp.
 COMPILER = clang
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -D SLEEP_TIME=${CZAS_ANIMACJI_MS}
 
-NAME = automaton
+NAME = automat
 
 INCLUDES = -Iincludes
 
@@ -11,7 +15,7 @@ SRCS_FILES = main.c read_from_stdin.c draw.c
 
 SRCS = ${addprefix ${SRCS_FOLDER}, ${SRCS_FILES}}
 
-OBJECTS_FOLDER = objects/
+OBJECTS_FOLDER = sources/
 OBJECTS_FILES = ${SRCS_FILES:.c=.o}
 
 OBJECTS = ${addprefix ${OBJECTS_FOLDER}, ${OBJECTS_FILES}}

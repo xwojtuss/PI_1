@@ -2,7 +2,7 @@
 
 int get_next_selected(int current, int input)
 {
-	int	nodes[4][2] = {{2, 1}, {3, 0}, {0, 3}, {1, 2}};
+	int	nodes[4][2] = GAMMA_FUNCTION;
 	return (nodes[current][input]);
 }
 
@@ -28,7 +28,7 @@ bool	draw_automaton(char input)
 	printf("   %s\\|/ %s|                  %s\\|/ %s|\n" NOT_SELECTED, nodes[0], nodes[2], nodes[1], nodes[3]);
 	printf("%s____________     %s1     ____________\n" NOT_SELECTED, nodes[2], nodes[3]);
 	printf("%s|          |%s<----------|          |\n" NOT_SELECTED, nodes[2], nodes[3]);
-	printf("%s|    " NOT_SELECTED "q0%s    |           %s|    " NOT_SELECTED "q1%s    |\n" NOT_SELECTED, nodes[2], nodes[2], nodes[3], nodes[3]);
+	printf("%s|    " NOT_SELECTED "q2%s    |           %s|    " NOT_SELECTED "q3%s    |\n" NOT_SELECTED, nodes[2], nodes[2], nodes[3], nodes[3]);
 	printf("%s|          |---------->%s|          |\n" NOT_SELECTED, nodes[2], nodes[3]);
 	printf("%s|__________|     1     %s|__________|\n" NOT_SELECTED, nodes[2], nodes[3]);
 	if (selected == END_NODE)

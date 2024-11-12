@@ -1,10 +1,9 @@
-# zmienna odpowiedzialna za czas animacji w ms, po zmianie należy wykonać make re
-CZAS_ANIMACJI_MS = 1000
+# variable responsible for animation time, after changed run "make re"
+SLEEP_TIME = 1000
 
-# w przypadku braku clang można zmienić na gcc, cc, itp.
 COMPILER = clang
 
-CFLAGS = -g -D SLEEP_TIME=${CZAS_ANIMACJI_MS}
+CFLAGS = -g -D SLEEP_TIME=${SLEEP_TIME}
 
 NAME = automat
 

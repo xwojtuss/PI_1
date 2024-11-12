@@ -2,9 +2,9 @@
 
 void	print_usage(void)
 {
-	printf("Wywołanie: ./automaton [łańcuch wejściowy]\n");
-	printf("Łańcuch wejściowy musi składać się z symboli z alfabetu {0, 1}, łańcuch pusty epsilon także jest akceptowalny\n");
-	printf("Jeśli argument nie zostanie podany, program będzie pytał o kolejne symbole, dopóki nie dojdziemy do stanu końcowego.\n");
+	printf("Usage: ./automaton [string]\n");
+	printf("The string must consist of symbols: {0, 1}, an empty epsilon string is also acceptable\n");
+	printf("If the string is not provided, the program will ask for symbols one by one, until EOF is reached.\n");
 }
 
 int	check_string(char *string)
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 
 	if (argc > 2)
 	{
-		printf("Zła ilość argumentów wywołania\n");
+		printf("Wrong argument count\n");
 		print_usage();
 		return (EXIT_FAILURE);
 	}
@@ -45,11 +45,11 @@ int	main(int argc, char **argv)
 			symbol = prompt_for_symbol();
 			if (symbol == -42 && !accepted)
 			{
-				printf("Łańcuch nie został zaakceptowany, nie dotarto do stanu końcowego.\n");
+				printf("String not accepted, did not reach the final state.\n");
 				return (EXIT_SUCCESS);
 			}
 			else if (symbol == -42)
-				return (printf("Łańcuch zaakceptowany, dotarto do stanu końcowego.\n"), EXIT_SUCCESS);
+				return (printf("String accepted.\n"), EXIT_SUCCESS);
 		}
 	}
 	else
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 		length = check_string(argv[1]);
 		if (length == INVALID_ARGUMENT)
 		{
-			printf("Łańcuch %s zawiera symbole spoza alfabetu.\n", argv[1]);
+			printf("String %s consists of symbols not from alphabet sigma.\n", argv[1]);
 			print_usage();
 			return (EXIT_FAILURE);
 		}
@@ -71,10 +71,10 @@ int	main(int argc, char **argv)
 		}
 		if (!accepted)
 		{
-			printf("Łańcuch %s nie został zaakceptowany, nie dotarto do stanu końcowego.\n", argv[1]);
+			printf("String %s not accepted, did not reach the final state.\n", argv[1]);
 			return (EXIT_SUCCESS);
 		}
 	}
-	printf("Łańcuch %s zaakceptowany, dotarto do stanu końcowego.\n", argv[1]);
+	printf("String %s accepted.\n", argv[1]);
 	return (EXIT_SUCCESS);
 }

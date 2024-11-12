@@ -5,7 +5,7 @@ COMPILER = clang
 
 CFLAGS = -g -D SLEEP_TIME=${SLEEP_TIME}
 
-NAME = automat
+NAME = automaton
 
 INCLUDES = -Iincludes
 
